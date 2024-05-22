@@ -1,4 +1,4 @@
-package OzonTestTask
+package main
 
 type Post struct {
 	ID              uint32
