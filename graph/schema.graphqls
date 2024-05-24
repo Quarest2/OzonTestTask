@@ -1,0 +1,45 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Post {
+  id: ID!
+  author: String!
+  commentsAllowed: Boolean!
+}
+
+type Comment {
+  id: ID!
+  author: String!
+  parentPost: ID!
+  parentComment: ID
+}
+
+type Query {
+  GetAllPosts: [Post!]!
+  GetPost(id: ID!): Post!
+  GetCommentsByPost(parentPost: ID!): [Comment!]
+  GetAllComments: [Comment!]!
+  GetComment(id: ID!): Comment!
+}
+
+input NewPost {
+  author: String!
+  commentsAllowed: Boolean!
+}
+
+input NewComment {
+  author: String!
+  parentPost: ID!
+  parentComment: ID
+}
+
+type Mutation {
+  createPost(input: NewPost!): Post!
+  createComment(input: NewComment!): Comment!
+
+  deletePost(id: ID!): Boolean
+  deleteAllPosts: Boolean
+  deleteComment(id: ID!): Boolean
+  deleteAllComments: Boolean
+}
